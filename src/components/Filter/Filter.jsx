@@ -1,8 +1,13 @@
-import PropTypes from 'prop-types';
 import { Input } from './Filter.styled';
 import { Box } from 'components/Box/Box.styled';
+import { useSelector, useDispatch } from 'react-redux';
+import { filteredContactsList } from 'components/redux/slice';
+import { getFilter } from 'components/redux/selectors';
 
-export const Filter = ({ value, onChange }) => {
+export const Filter = () => {
+  const filter = useSelector(getFilter);
+
+  const dispatch = useDispatch();
   return (
     <>
       <Box textAlign="center" colors={p => p.theme.colors.black} as="p">
@@ -12,14 +17,9 @@ export const Filter = ({ value, onChange }) => {
         autoComplete="off"
         type="text"
         name="filter"
-        value={value}
-        onChange={onChange}
+        value={filter}
+        onChange={e => dispatch(filteredContactsList(e.target.value))}
       ></Input>
     </>
   );
-};
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };

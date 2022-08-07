@@ -1,39 +1,28 @@
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { ContactItem } from 'components/ContactItem';
 import { WarningMessage, ContactsListUL } from './ContactList.styled';
+import { getItems, getFilter } from 'components/redux/selectors';
 
-export const ContactList = ({ filteredName, value, onDeleteContact }) => {
+export const ContactList = () => {
+  const items = useSelector(getItems);
+  const filter = useSelector(getFilter);
+  const filteredName = items.filter(item =>
+    item.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
     <ContactsListUL>
-      {filteredName.length === 0 && value && (
+      {filteredName.length === 0 && filter && (
         <WarningMessage>No such contact Name</WarningMessage>
       )}
-      {filteredName.length === 0 && value === '' && (
+      {filteredName.length === 0 && filter === '' && (
         <WarningMessage>Contacts list empty</WarningMessage>
       )}
 
       {filteredName.length > 0 &&
         filteredName.map(item => {
-          return (
-            <ContactItem
-              item={item}
-              key={item.id}
-              onDeleteContact={onDeleteContact}
-            />
-          );
+          return <ContactItem item={item} key={item.id} />;
         })}
     </ContactsListUL>
   );
-};
-
-ContactList.propTypes = {
-  filteredName: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-  value: PropTypes.string,
-  onDeleteContact: PropTypes.func.isRequired,
 };

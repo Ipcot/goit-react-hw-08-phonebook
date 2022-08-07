@@ -1,20 +1,18 @@
 import PropTypes from 'prop-types';
 import { MdDelete } from 'react-icons/md';
 import { ContactInfo, ContactItemButton } from './ContactItem.styled';
+import { useDispatch } from 'react-redux';
+import { removeContact } from 'components/redux/slice';
 
-export const ContactItem = ({
-  item: { id, number, name },
-  onDeleteContact,
-}) => {
+export const ContactItem = ({ item: { id, number, name } }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <ContactInfo key={id}>
         {name}: {number}
         <ContactItemButton
           type="button"
-          onClick={() => {
-            onDeleteContact(id);
-          }}
+          onClick={() => dispatch(removeContact(id))}
         >
           <MdDelete />
           Delete
@@ -30,5 +28,4 @@ ContactItem.propTypes = {
     name: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired,
   }).isRequired,
-  onDeleteContact: PropTypes.func.isRequired,
 };

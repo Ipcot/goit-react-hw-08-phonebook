@@ -1,12 +1,25 @@
-import { configureStore, createAction, createReducer } from '@reduxjs/toolkit';
-
-const increment = createAction('myValue/increment');
-console.log(increment(100));
-
-const myReducer = createReducer(0, {});
+import { configureStore } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import { persistedAddContactReducer } from './slice';
 
 export const store = configureStore({
   reducer: {
-    myValue: myReducer,
+    contacts: persistedAddContactReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);
