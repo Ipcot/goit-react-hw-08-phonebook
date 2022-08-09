@@ -1,8 +1,8 @@
 import { Input } from './Filter.styled';
 import { Box } from 'components/Box/Box.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { filteredContactsList } from 'components/redux/slice';
-import { getFilter } from 'components/redux/selectors';
+import { filteredContactsList } from 'redux/slice';
+import { getFilter } from '../../redux/selectors';
 
 export const Filter = () => {
   const filter = useSelector(getFilter);
