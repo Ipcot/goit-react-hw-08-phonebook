@@ -3,9 +3,7 @@ import { Filter } from './Filter';
 import { ContactList } from './ContactList';
 import { Box } from './Box/Box.styled';
 
-
 export const App = () => {
-
   return (
     <Box px="30%">
       <Box textAlign="center" colors={p => p.theme.colors.black} as="h1">
