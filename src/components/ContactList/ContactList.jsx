@@ -1,30 +1,34 @@
-import { useSelector } from 'react-redux';
 import { ContactItem } from 'components/ContactItem';
 import { WarningMessage, ContactsListUL } from './ContactList.styled';
-import { getItems, getFilter } from '../../redux/selectors';
-// import { fetchContacts } from 'services/fetchContacts';
+import { useGetContactsQuery } from 'redux/slice';
+import { useSelector } from 'react-redux';
+import { getFilter } from 'redux/selectors';
 
 export const ContactList = () => {
-  const items = useSelector(getItems);
-  // const items = useSelector(fetchContacts);
+  const { data, error, isLoading } = useGetContactsQuery();
   const filter = useSelector(getFilter);
-  const filteredName = items.filter(item =>
-    item.name.toLowerCase().includes(filter.toLowerCase())
-  );
+
+  const filteredName = data?.filter(item => item.name.includes(filter));
 
   return (
     <ContactsListUL>
-      {filteredName.length === 0 && filter && (
+      {!filteredName && filter !== '' && (
         <WarningMessage>No such contact Name</WarningMessage>
       )}
-      {filteredName.length === 0 && filter === '' && (
+      {!filteredName && filter === '' && (
         <WarningMessage>Contacts list empty</WarningMessage>
       )}
-
-      {filteredName.length > 0 &&
+      {isLoading ? (
+        <div> Loading...</div>
+      ) : (
         filteredName.map(item => {
           return <ContactItem item={item} key={item.id} />;
-        })}
+        })
+      )}
+      {/* {filteredName.length > 0 &&
+        filteredName.map(item => {
+          return <ContactItem item={item} key={item.id} />;
+        })} */}
     </ContactsListUL>
   );
 };

@@ -1,13 +1,16 @@
 import { Input } from './Filter.styled';
 import { Box } from 'components/Box/Box.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { filteredContactsList } from 'redux/slice';
-import { getFilter } from '../../redux/selectors';
+import { filterChange } from 'redux/filterSlice';
+import { getFilter } from 'redux/selectors';
 
 export const Filter = () => {
   const filter = useSelector(getFilter);
-
   const dispatch = useDispatch();
+
+  const handleChange = value => {
+    dispatch(filterChange(value));
+  };
   return (
     <>
       <Box textAlign="center" colors={p => p.theme.colors.black} as="p">
@@ -18,7 +21,7 @@ export const Filter = () => {
         type="text"
         name="filter"
         value={filter}
-        onChange={e => dispatch(filteredContactsList(e.target.value))}
+        onChange={e => handleChange(e.target.value)}
       ></Input>
     </>
   );

@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from 'redux/slice';
 import { nanoid } from 'nanoid';
 import {
   ContactsFormInput,
@@ -8,47 +6,48 @@ import {
   ContactsFormLabel,
   Button,
 } from './ContactsForm.styled';
-import { getItems } from '../../redux/selectors';
+import { useAddContactsMutation, useGetContactsQuery } from 'redux/slice';
 
 export const ContactsForm = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const items = useSelector(getItems);
-  const dispatch = useDispatch();
+  const [phone, setPhone] = useState('');
+
+  const { data } = useGetContactsQuery();
+  const [addContact] = useAddContactsMutation();
 
   const nameId = nanoid(5);
-  const numberId = nanoid(5);
+  const phoneId = nanoid(5);
 
   const handleInputValueChange = e => {
     switch (e.target.name) {
       case 'name':
         setName(e.target.value);
         break;
-      case 'number':
-        setNumber(e.target.value);
+      case 'phone':
+        setPhone(e.target.value);
         break;
       default:
         return;
     }
   };
 
-  const onFormSubmit = (name, number) => {
-    if (items.find(item => item.name === name)) {
+  const onFormSubmit = (name, phone) => {
+    if (data.find(item => item.name === name)) {
       alert(`${name} is already in contacts`);
       return;
     }
-    dispatch(addContact({ id: nanoid(5), name, number }));
+    addContact({ name, phone });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    onFormSubmit(name, number);
+    onFormSubmit(name, phone);
     reset();
   };
 
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -65,13 +64,13 @@ export const ContactsForm = () => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
-        <ContactsFormLabel htmlFor={numberId}>Number</ContactsFormLabel>
+        <ContactsFormLabel htmlFor={phoneId}>Phone</ContactsFormLabel>
         <ContactsFormInput
-          id={numberId}
-          value={number}
+          id={phoneId}
+          value={phone}
           onChange={handleInputValueChange}
           type="<text>"
-          name="number"
+          name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
