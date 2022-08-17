@@ -3,32 +3,34 @@ import { WarningMessage, ContactsListUL } from './ContactList.styled';
 import { useGetContactsQuery } from 'redux/slice';
 import { useSelector } from 'react-redux';
 import { getFilter } from 'redux/selectors';
+import { Loader } from 'components/Loader';
 
 export const ContactList = () => {
-  const { data, error, isLoading } = useGetContactsQuery();
+  const { data, isLoading } = useGetContactsQuery();
   const filter = useSelector(getFilter);
 
-  const filteredName = data?.filter(item => item.name.includes(filter));
+  const filteredName = data?.filter(item =>
+    item.name.toLowerCase().includes(filter.toLowerCase())
+  );
+  if (!filteredName) {
+    return;
+  }
 
   return (
     <ContactsListUL>
-      {!filteredName && filter !== '' && (
+      {filteredName.length === 0 && filter !== '' && (
         <WarningMessage>No such contact Name</WarningMessage>
       )}
-      {!filteredName && filter === '' && (
+      {filteredName.length === 0 && filter === '' && (
         <WarningMessage>Contacts list empty</WarningMessage>
       )}
       {isLoading ? (
-        <div> Loading...</div>
+        <Loader />
       ) : (
         filteredName.map(item => {
           return <ContactItem item={item} key={item.id} />;
         })
       )}
-      {/* {filteredName.length > 0 &&
-        filteredName.map(item => {
-          return <ContactItem item={item} key={item.id} />;
-        })} */}
     </ContactsListUL>
   );
 };
