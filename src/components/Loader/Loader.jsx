@@ -4,7 +4,7 @@ import { LoaderStyled } from './Loader.styled';
 export const Loader = () => {
   return (
     <LoaderStyled>
-      <Circles color="purple" height={80} width={80} />
+      <Circles color="skyblue" height={80} width={80} />
     </LoaderStyled>
   );
 };
