@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from 'redux/slice';
 import { nanoid } from 'nanoid';
 import {
   ContactsFormInput,
@@ -6,14 +8,17 @@ import {
   ContactsFormLabel,
   Button,
 } from './ContactsForm.styled';
-import { useAddContactsMutation, useGetContactsQuery } from 'redux/slice';
+import { getItems } from '../../redux/selectors';
+// import { useAddContactsMutation, useGetContactsQuery } from 'redux/slice';
 
 export const ContactsForm = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const items = useSelector(getItems);
+  const dispatch = useDispatch();
 
-  const { data } = useGetContactsQuery();
-  const [addContact] = useAddContactsMutation();
+  // const { data } = useGetContactsQuery();
+  // const [addContact] = useAddContactsMutation();
 
   const nameId = nanoid(5);
   const phoneId = nanoid(5);
@@ -32,11 +37,11 @@ export const ContactsForm = () => {
   };
 
   const onFormSubmit = (name, phone) => {
-    if (data.find(item => item.name === name)) {
+    if (items.find(item => item.name === name)) {
       alert(`${name} is already in contacts`);
       return;
     }
-    addContact({ name, phone });
+    dispatch(addContact({ name, phone }));
   };
 
   const handleSubmit = e => {

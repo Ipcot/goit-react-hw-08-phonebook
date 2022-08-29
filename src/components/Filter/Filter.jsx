@@ -1,5 +1,5 @@
 import { Input } from './Filter.styled';
-import { Box } from 'components/Box/Box.styled';
+import { Box } from 'components/Box/Box';
 import { useSelector, useDispatch } from 'react-redux';
 import { filterChange } from 'redux/filterSlice';
 import { getFilter } from 'redux/selectors';
