@@ -7,11 +7,7 @@ import { Outlet } from 'react-router-dom';
 export const Layout = () => {
   return (
     <Box display="grid" gridTemplateRows="60px 1fr">
-      <AppBar>
-        {/* <Navigation />
-        <UserMenu />
-        <AuthNav /> */}
-      </AppBar>
+      <AppBar />
       {/* <Suspense fallback={<Loader />}> */}
       <Outlet />
       {/* </Suspense> */}

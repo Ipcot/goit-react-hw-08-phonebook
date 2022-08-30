@@ -4,8 +4,12 @@
 // import { Box } from './Box/Box.styled';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
-import { RegisterView } from '../page/RegisterView/RegisterView';
-import { Login } from '../page/LoginView/LoginView';
+import { Register } from '../page/Register/Register';
+import { Login } from '../page/Login/Login';
+import { Contacts } from 'page/Contacts/Contacts';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { operations } from 'redux/auth/auth-operation';
 
 // export const App = () => {
 //   return (
@@ -25,13 +29,18 @@ import { Login } from '../page/LoginView/LoginView';
 // };
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(operations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="/register" element={<RegisterView />} />
-        {/* <Route path="register" element={<RegisterView />} /> */}
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="contacts" element={<>Contacts</>} /> */}
+        <Route path="/contacts" element={<Contacts />} />
       </Route>
     </Routes>
   );
