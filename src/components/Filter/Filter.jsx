@@ -5,8 +5,8 @@ import { filterChange } from 'redux/filterSlice';
 import { getFilter } from 'redux/selectors';
 
 export const Filter = () => {
-  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
+  const filter = useSelector(getFilter);
 
   const handleChange = value => {
     dispatch(filterChange(value));

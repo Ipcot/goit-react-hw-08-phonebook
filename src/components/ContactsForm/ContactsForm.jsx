@@ -13,6 +13,7 @@ export const ContactsForm = () => {
   const [phone, setPhone] = useState('');
 
   const { data } = useGetContactsQuery();
+
   const [addContact] = useAddContactsMutation();
 
   const nameId = nanoid(5);
@@ -32,6 +33,7 @@ export const ContactsForm = () => {
   };
 
   const onFormSubmit = (name, phone) => {
+    console.log(name, phone);
     if (data.find(item => item.name === name)) {
       alert(`${name} is already in contacts`);
       return;
