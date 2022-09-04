@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { operations } from '../../redux/auth/auth-operation';
+import { Box, TextField, Button } from '@mui/material';
 
 export const Register = () => {
   const dispatch = useDispatch();
@@ -31,32 +32,71 @@ export const Register = () => {
 
   return (
     <div>
-      <h1>Registration Page</h1>
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          User Name
-          <input type="text" name="name" value={name} onChange={handleChange} />
-        </label>
-        <label>
-          User Email
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          User Password
-          <input
-            type="text"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="sumbit">Submit Register</button>
-      </form>
+      <Box
+        mt={4}
+        component="form"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: 'lightslategray',
+        }}
+        noValidate
+        onSubmit={handleSubmit}
+        autoComplete="off"
+      >
+        <TextField
+          sx={{
+            margin: '4px',
+            color: 'lightslategray',
+          }}
+          required
+          label="User Name"
+          variant="outlined"
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+        />
+        <TextField
+          sx={{
+            margin: '4px',
+            color: 'lightslategray',
+          }}
+          required
+          label="User Email"
+          variant="outlined"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
+        <TextField
+          sx={{
+            margin: '4px',
+            color: 'lightslategray',
+          }}
+          required
+          label="Password"
+          variant="outlined"
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+        />
+
+        <Button
+          sx={{
+            margin: '4px',
+            color: 'lightslategray',
+          }}
+          variant="outlined"
+          type="sumbit"
+        >
+          Submit Register
+        </Button>
+      </Box>
     </div>
   );
 };

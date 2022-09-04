@@ -3,12 +3,12 @@ import { MdDelete } from 'react-icons/md';
 import { ContactInfo, ContactItemButton } from './ContactItem.styled';
 import { useDeleteContactMutation } from 'redux/slice';
 
-export const ContactItem = ({ item: { id, phone, name } }) => {
+export const ContactItem = ({ item: { id, number, name } }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
   return (
     <>
       <ContactInfo key={id}>
-        {name}: {phone}
+        {name}: {number}
         <ContactItemButton
           type="button"
           onClick={() => deleteContact(id)}
@@ -26,6 +26,6 @@ ContactItem.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
   }).isRequired,
 };

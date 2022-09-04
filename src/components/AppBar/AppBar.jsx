@@ -1,16 +1,19 @@
-import { Box } from 'components/Box/Box';
-import { useSelector } from 'react-redux';
+import { Box } from '@mui/material';
 import { Navigation } from 'components/Navigation';
 import { AuthNav } from 'components/AuthNav';
 import { UserMenu } from 'components/UserMenu';
-import { authSelectors } from '../../redux/auth/auth-selectors';
-// import { NavItem } from './AppBar.styled';
+import { useAuth } from 'hooks';
 
 export const AppBar = () => {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const { isLoggedIn } = useAuth();
   return (
-    <Box as="header" p={4} borderBottom="1px solid black">
+    <Box
+      as="header"
+      borderBottom="2px dotted grey"
+      // bgcolor={p => p.theme.colors.green}
+    >
       <Navigation />
+
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </Box>
   );

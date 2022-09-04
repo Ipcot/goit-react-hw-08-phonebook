@@ -1,4 +1,5 @@
-export const theme = {
+import { createTheme } from '@mui/material';
+export const theme = createTheme({
   colors: {
     title: '#303030',
     black: '#000',
@@ -49,4 +50,4 @@ export const theme = {
   shadows: {
     normal: 'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;',
   },
-};
+});

@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { operations } from 'redux/auth/auth-operation';
+import { Box, Container, TextField, Button } from '@mui/material';
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -26,29 +27,71 @@ export const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">LogIN</button>
-      </form>
-    </div>
+    <Container
+      maxWidth="sm"
+      sx={
+        {
+          // display: 'flex',
+          // flexDirection: 'column',
+          // justifyContent: 'center',
+          // maxWidth: 200,
+          // border: '1px dashed grey',
+        }
+      }
+    >
+      <Box
+        mt={4}
+        component="form"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
+        <TextField
+          sx={{
+            margin: '4px',
+            color: 'lightslategray',
+          }}
+          required
+          label="Email"
+          variant="outlined"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
+
+        <TextField
+          sx={{
+            margin: '4px',
+            color: 'lightslategray',
+          }}
+          required
+          label="Password"
+          variant="outlined"
+          type="password"
+          name="password"
+          value={password}
+          minLength="6"
+          onChange={handleChange}
+        />
+
+        <Button
+          sx={{
+            margin: '4px',
+            color: 'lightslategray',
+          }}
+          variant="outlined"
+          type="submit"
+        >
+          Login
+        </Button>
+      </Box>
+    </Container>
   );
 };
