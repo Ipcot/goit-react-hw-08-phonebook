@@ -6,7 +6,7 @@ import {
   ContactsFormLabel,
   Button,
 } from './ContactsForm.styled';
-import { useAddContactsMutation, useGetContactsQuery } from 'redux/slice';
+import { useAddContactsMutation, useGetContactsQuery } from 'redux/contacts';
 
 export const ContactsForm = () => {
   const [name, setName] = useState('');
@@ -33,12 +33,11 @@ export const ContactsForm = () => {
   };
 
   const onFormSubmit = (name, number) => {
-    console.log(name, number);
     if (data.find(item => item.name === name)) {
       alert(`${name} is already in contacts`);
       return;
     }
-    console.log({ name, number });
+
     addContact({ name, number });
   };
 

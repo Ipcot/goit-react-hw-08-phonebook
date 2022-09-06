@@ -1,8 +1,8 @@
 import { Input } from './Filter.styled';
-import { Box } from 'components/Box/Box';
+import { Box } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import { filterChange } from 'redux/filterSlice';
-import { getFilter } from 'redux/selectors';
+import { filterChange } from 'redux/contacts';
+import { getFilter } from 'redux/contacts';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export const Filter = () => {
   };
   return (
     <>
-      <Box textAlign="center" colors={p => p.theme.colors.black} as="p">
+      <Box textAlign="center" sx={{ color: 'green' }} as="p">
         Find contacts by name
       </Box>
       <Input

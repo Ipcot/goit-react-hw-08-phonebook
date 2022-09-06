@@ -7,11 +7,17 @@ export const Navigation = () => {
 
   return (
     <Box as="nav" display="flex">
-      {/* <NavLink to="/">Home</NavLink> */}
-
       {isLoggedIn && (
         <NavLink to="/contacts">
-          <Typography sx={{ p: 2, display: 'block' }}>Contacts</Typography>
+          <Typography
+            sx={{
+              p: 2,
+              display: 'block',
+              color: 'green',
+            }}
+          >
+            Contacts
+          </Typography>
         </NavLink>
       )}
     </Box>

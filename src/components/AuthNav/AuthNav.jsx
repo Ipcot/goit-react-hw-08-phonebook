@@ -12,10 +12,24 @@ export const AuthNav = () => {
       }}
     >
       <NavLink to="/register">
-        <Typography sx={{ p: 2, color: 'lightslategray' }}>Register</Typography>
+        <Typography
+          sx={{
+            p: 2,
+            color: 'lightslategray',
+          }}
+        >
+          Register
+        </Typography>
       </NavLink>
       <NavLink to="/login">
-        <Typography sx={{ p: 2, color: 'lightslategray' }}>Login</Typography>
+        <Typography
+          sx={{
+            p: 2,
+            color: 'lightslategray',
+          }}
+        >
+          Login
+        </Typography>
       </NavLink>
     </Box>
   );

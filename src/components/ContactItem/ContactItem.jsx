@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { MdDelete } from 'react-icons/md';
 import { ContactInfo, ContactItemButton } from './ContactItem.styled';
-import { useDeleteContactMutation } from 'redux/slice';
+import { useDeleteContactMutation } from 'redux/contacts';
 
 export const ContactItem = ({ item: { id, number, name } }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();

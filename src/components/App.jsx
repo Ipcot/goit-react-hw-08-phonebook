@@ -1,15 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
-import { Register } from '../page/Register/Register';
-import { Login } from '../page/Login/Login';
-import { Contacts } from 'page/Contacts/Contacts';
+import { Register } from '../page/Register';
+import { Login } from '../page/Login';
+import { Contacts } from 'page/Contacts';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { operations } from 'redux/auth/auth-operation';
+import { authOperations } from 'redux/auth';
 import { PublicRoute } from '../routes/PublicRoute';
 import { PrivateRoute } from '../routes/PrivateRoute';
 import { useAuth } from 'hooks';
-import { Home } from './Home/Home';
+import { Home } from './Home';
 import { Loader } from './Loader';
 
 export const App = () => {
@@ -17,7 +17,7 @@ export const App = () => {
   const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(operations.fetchCurrentUser());
+    dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
   return (

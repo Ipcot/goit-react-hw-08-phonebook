@@ -9,8 +9,11 @@ export const AppBar = () => {
   return (
     <Box
       as="header"
-      borderBottom="2px dotted grey"
-      // bgcolor={p => p.theme.colors.green}
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        borderBottom: '2px dotted grey',
+      }}
     >
       <Navigation />
 

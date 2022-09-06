@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { operations } from 'redux/auth/auth-operation';
+import { authOperations } from 'redux/auth';
 import { Box, Container, TextField, Button } from '@mui/material';
 
 export const Login = () => {
@@ -21,24 +21,13 @@ export const Login = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(operations.logIn({ email, password }));
+    dispatch(authOperations.logIn({ email, password }));
     setEmail('');
     setPassword('');
   };
 
   return (
-    <Container
-      maxWidth="sm"
-      sx={
-        {
-          // display: 'flex',
-          // flexDirection: 'column',
-          // justifyContent: 'center',
-          // maxWidth: 200,
-          // border: '1px dashed grey',
-        }
-      }
-    >
+    <Container maxWidth="sm">
       <Box
         mt={4}
         component="form"

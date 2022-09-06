@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { operations } from '../../redux/auth/auth-operation';
+import { authOperations } from '../../redux/auth';
 import { Box, TextField, Button } from '@mui/material';
 
 export const Register = () => {
@@ -24,7 +24,7 @@ export const Register = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(operations.register({ name, email, password }));
+    dispatch(authOperations.register({ name, email, password }));
     setName('');
     setEmail('');
     setPassword('');

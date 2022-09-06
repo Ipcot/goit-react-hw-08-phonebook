@@ -1,17 +1,27 @@
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks';
-import { operations } from 'redux/auth/auth-operation';
+import { authOperations } from 'redux/auth';
+import { Box, Button } from '@mui/material';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
 
   return (
-    <div>
-      <span>Welcome, {user.name}</span>
-      <button type="button" onClick={() => dispatch(operations.logOut())}>
-        LOgOut
-      </button>
-    </div>
+    <Box sx={{ p: 1, color: 'lightslategray' }}>
+      <Box as="span" sx={{ mr: '8px' }}>
+        Welcome, {user.name}
+      </Box>
+      <Button
+        sx={{
+          color: 'lightslategray',
+          border: '2px dotted grey',
+        }}
+        type="button"
+        onClick={() => dispatch(authOperations.logOut())}
+      >
+        Logout
+      </Button>
+    </Box>
   );
 };

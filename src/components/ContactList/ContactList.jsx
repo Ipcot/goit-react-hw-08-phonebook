@@ -1,8 +1,8 @@
 import { ContactItem } from 'components/ContactItem';
 import { WarningMessage, ContactsListUL } from './ContactList.styled';
-import { useGetContactsQuery } from 'redux/slice';
+import { useGetContactsQuery } from 'redux/contacts';
 import { useSelector } from 'react-redux';
-import { getFilter } from 'redux/selectors';
+import { getFilter } from 'redux/contacts';
 import { Loader } from 'components/Loader';
 
 export const ContactList = () => {
