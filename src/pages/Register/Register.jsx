@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 import { Box, TextField, Button } from '@mui/material';
+import { Helmet } from 'react-helmet';
 
 export const Register = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ export const Register = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
       <Box
         mt={4}
         component="form"

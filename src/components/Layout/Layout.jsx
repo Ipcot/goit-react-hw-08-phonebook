@@ -8,7 +8,6 @@ export const Layout = () => {
   return (
     <Box display="grid" gridTemplateRows="60px 1fr">
       <AppBar />
-
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>

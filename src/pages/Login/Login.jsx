@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { authOperations } from 'redux/auth';
 import { Box, Container, TextField, Button } from '@mui/material';
+import { Helmet } from 'react-helmet';
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ export const Login = () => {
 
   return (
     <Container maxWidth="sm">
+      <Helmet>
+        <title>Login page</title>
+      </Helmet>
       <Box
         mt={4}
         component="form"
